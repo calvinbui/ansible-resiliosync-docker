@@ -1,0 +1,15 @@
+---
+
+- name: Set Docker container parameters
+  set_fact:
+    resiliosync_container_parameters:
+      name: "{{ resiliosync_name }}"
+      image: "{{ resiliosync_image }}"
+      state: started
+      published_ports: "{{ resiliosync_ports }}"
+      env: "{{ resiliosync_environment_variables }}"
+      volumes: "{{ resiliosync_volumes }}"
+
+- name: Create Resilio Sync container
+  docker_container: "{{ resiliosync_container_parameters | combine(resiliosync_docker_additional_options) }}"
+  register: resiliosync_container

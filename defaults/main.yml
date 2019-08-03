@@ -1,0 +1,18 @@
+---
+
+resiliosync_name: resiliosync
+resiliosync_image: linuxserver/resilio-sync
+resiliosync_ports:
+  - 8888:8888
+  - 55555:55555
+resiliosync_volumes:
+  - /tmp/resilio/config:/config
+  - /tmp/resilio/downloads:/downloads
+  - /tmp/resilio/sync:/sync
+resiliosync_environment_variables:
+  PUID: "1000"
+  PGID: "1000"
+  TZ: "Australia/Sydney"
+
+resiliosync_docker_additional_options:
+  restart_policy: unless-stopped
